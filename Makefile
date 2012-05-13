@@ -35,12 +35,12 @@ install-fcgi:
 	@echo "Installing of bundled Lua-fcgi lib is done!"
 
 install-samples:
-	@mkdir -p $(PREFIX)/samples
-	@cp -r samples/* $(PREFIX)/samples
+	@mkdir -p $(PREF)/samples
+	@cp -r samples/* $(PREF)/samples
 
 install-doc:
-	@mkdir -p $(PREFIX)/doc
-	@cp -r doc/* $(PREFIX)/doc
+	@mkdir -p $(PREF)/doc
+	@cp -r doc/* $(PREF)/doc
 
 install-rocks: install install-doc install-samples
 
