@@ -6,6 +6,7 @@ DESTDIR := /
 LDIR := $(DESTDIR)/$(LUA_DIR)/wsapi
 CDIR := $(DESTDIR)/$(LUA_LIBDIR)
 BDIR := $(DESTDIR)/$(BIN_DIR)
+PREF := $(DESTDIR)/$(PREFIX)
 
 all: cgi fastcgi
 
@@ -33,11 +34,15 @@ install-fcgi:
 	@cp src/fastcgi/lfcgi.so $(CDIR)
 	@echo "Installing of bundled Lua-fcgi lib is done!"
 
-install-rocks: install
-	mkdir -p $(PREFIX)/samples
-	cp -r samples/* $(PREFIX)/samples
-	mkdir -p $(PREFIX)/doc
-	cp -r doc/* $(PREFIX)/doc
+install-samples:
+	@mkdir -p $(PREFIX)/samples
+	@cp -r samples/* $(PREFIX)/samples
+
+install-doc:
+	@mkdir -p $(PREFIX)/doc
+	@cp -r doc/* $(PREFIX)/doc
+
+install-rocks: install install-doc install-samples
 
 clean:
 	@rm -f config src/fastcgi/lfcgi.so
